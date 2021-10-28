@@ -13,11 +13,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ClientDetailsComponent } from './components/client-details/client-details.component';
 
 import { AuthGaurd } from './gaurds/auth.gaurd';
+import { RegisterGaurd } from './gaurds/register.gaurd';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canActivate: [AuthGaurd] },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [RegisterGaurd],
+  },
   {
     path: 'client/add',
     component: AddClientComponent,
@@ -38,7 +43,7 @@ const routes: Routes = [
 ];
 @NgModule({
   exports: [RouterModule],
-  providers: [AuthGaurd],
+  providers: [AuthGaurd, RegisterGaurd],
   imports: [RouterModule.forRoot(routes)],
 })
 export class AppRoutingModule {}
