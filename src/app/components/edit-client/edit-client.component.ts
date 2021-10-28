@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientService } from 'src/app/services/client.service';
 import { Client } from 'src/app/models/Client';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { NgForm } from '@angular/forms';
 import { SettingsService } from 'src/app/services/settings.service';
