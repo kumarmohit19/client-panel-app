@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { ClientService } from 'src/app/services/client.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { Router } from '@angular/router';
+import { SettingsService } from 'src/app/services/settings.service';
 
 @Component({
   selector: 'app-add-client',
@@ -19,17 +20,21 @@ export class AddClientComponent implements OnInit {
     balance: 0,
   };
 
-  disableBalanceOnAdd: boolean = true;
+  disableBalanceOnAdd: boolean;
 
   @ViewChild('clientForm') form: any;
 
   constructor(
+    private settingService: SettingsService,
     private flashMessage: FlashMessagesService,
     private clientService: ClientService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.disableBalanceOnAdd =
+      this.settingService.getSettings().disableBalanceOnAdd ?? true;
+  }
 
   onSubmit({ value, valid }: NgForm) {
     if (this.disableBalanceOnAdd) {
